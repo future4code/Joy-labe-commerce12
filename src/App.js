@@ -1,21 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import './App.css';
-import Produtos from './components/Produtos';
+import Produtos from './components/Produtos/Produtos';
+import { Filtros } from './components/Filtros/Filtros';
+import { Carrinho } from './components/Carrinho/Carrinho';
+
 
 const ContainerPrincipal = styled.div`
   display: flex;
   /* justify-content: space-between; */
   /* flex-grow: 0 1 0; */
-`
-const ContainerFiltro = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 0.6rem;
-  border: 1px red solid;
-  margin: 0 1rem;
-  height: 15rem;
-  background-color: whitesmoke;
 `
 const DivCards = styled.div`
   display: grid;
@@ -30,114 +23,79 @@ const DivCards = styled.div`
 const DivCarrinho = styled.div`
   margin-left: 3rem;
 `
-class App extends React.Component {
-  state = {
-    quantidade:"",
-    preco:"",
-    valorMinimo:"",
-    valorMaximo:"",
-    buscaNome:""
-  }
+const produtos = [
+  {
+    imagem: "https://picsum.photos/180/200?a=1",
+    title: "Foto",
+    preco: "100"
+  },
+  {
+    imagem: "https://picsum.photos/180/200?a=2",
+    title: "Foto",
+    preco: "100"
+  },
+  {
+    imagem: "https://picsum.photos/180/200?a=3",
+    title: "Foto",
+    preco: "100"
+  },
+  {
+    imagem: "https://picsum.photos/180/200?a=4",
+    title: "Foto",
+    preco: "100"
+  },
+  {
+    imagem: "https://picsum.photos/180/200?a=5",
+    title: "Foto",
+    preco: "100"
+  },
+  {
+    imagem: "https://picsum.photos/180/200?a=6",
+    title: "Foto",
+    preco: "100"
+  },
+  {
+    imagem: "https://picsum.photos/180/200?a=7",
+    title: "Foto",
+    preco: "100"
+  },
+  {
+    imagem: "https://picsum.photos/180/200?a=8",
+    title: "Foto",
+    preco: "100"
+  },
+  {
+    imagem: "https://picsum.photos/180/200?a=9",
+    title: "Foto",
+    preco: "100"
+  },
+]
 
-  mudarMinimo = (event) =>{
-    this.setState({valorMinimo: event.target.value})
-  }
-  
-  mudarMaximo = (event) => {
-    this.setState({valorMaximo: event.target.value})
-  }
-
-  mudarBusca = (event) =>{
-    this.setState({buscaNome: event.target.value})
-  }
-  render(){
-    return (
+function App() {
+  return (
+    <div>
       <div>
+        <h1>Header</h1>
+      </div>
+
+      <ContainerPrincipal>
         <div>
-          <h1>Header</h1>
+          <Filtros/>
         </div>
 
-        <ContainerPrincipal>
-          <ContainerFiltro>
-            <h3>Filtro</h3>
-            <label>
-              Valor mínimo:
-              <br/>
-              <input type="number" value={this.state.valorMinimo} onChange={this.mudarMinimo}/>
-            </label>
-            <label>
-              Valor máximo:
-              <br/>
-              <input type="number" value={this.state.valorMaximo} onChange={this.mudarMaximo}/>
-            </label>
-            <label>
-              Buscar por nome:
-              <br/>
-              <input type="text" placeholder="Pesquisa " value={this.state.buscaNome} onChange={this.mudarBusca}/>
-            </label>
-          </ContainerFiltro>
+        <DivCards>
+          <Produtos produtos = {produtos}/>
+        </DivCards>
 
-          <DivCards>
-            {/* <h3>Pordutos</h3> */}
-            <Produtos 
-              img={"https://loremflickr.com/180/200?lock=1"}
-              nomeProduto={"Gato 1"}
-              // preco={this.state.preco}
-              preco={"1.000"}
-            />
-            <Produtos 
-              img={"https://loremflickr.com/180/200?lock=2"}
-              nomeProduto={"Gato 1"}
-              preco={"1.000"}
-            />
-            <Produtos 
-              img={"https://loremflickr.com/180/200?lock=3"}
-              nomeProduto={"Gato 1"}
-              preco={"1.000"}
-            />
-            <Produtos 
-              img={"https://loremflickr.com/180/200?lock=4"}
-              nomeProduto={"Gato 1"}
-              preco={"1.000"}
-            />
-            <Produtos 
-              img={"https://loremflickr.com/180/200?lock=5"}
-              nomeProduto={"Gato 1"}
-              preco={"1.000"}
-            />
-            <Produtos 
-              img={"https://loremflickr.com/180/200?lock=6"}
-              nomeProduto={"Gato 1"}
-              preco={"1.000"}
-            />
-            <Produtos 
-              img={"https://loremflickr.com/180/200?lock=7"}
-              nomeProduto={"Gato 1"}
-              preco={"1.000"}
-            />
-            <Produtos 
-              img={"https://loremflickr.com/180/200?lock=8"}
-              nomeProduto={"Gato 1"}
-              preco={"1.000"}
-            />
-            <Produtos 
-              img={"https://loremflickr.com/180/200?lock=1"}
-              nomeProduto={"Gato 1"}
-              preco={"1.000"}
-            />
-          </DivCards>
+        <DivCarrinho>
+          <h3>Carrinho:</h3>
+          <Carrinho/>
+        </DivCarrinho>
 
-          <DivCarrinho>
-            <h3>Carrinho:</h3>
-          </DivCarrinho>
-
-        </ContainerPrincipal>
-        <div>Footer</div>
-      </div>
-      
-    );
-  }
-  
+      </ContainerPrincipal>
+      <div>Footer</div>
+    </div>  
+  );
 }
 
 export default App;
