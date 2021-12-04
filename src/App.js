@@ -25,47 +25,47 @@ const DivCarrinho = styled.div`
 const produtos = [
   {
     imagem: foto1,
-    title: "Foto",
+    title: "Camiseta Life on Mars",
     preco: "10"
   },
   {
     imagem: foto2,
-    title: "Foto",
+    title: "Camiseta Três Monstros da Astronomia",
     preco: "150"
   },
   {
     imagem: foto3,
-    title: "Foto",
-    preco: "200"
+    title: "Camiseta Laika",
+    preco: "250"
   },
   {
     imagem: foto4,
-    title: "Foto",
+    title: "Camiseta Yuri Gagarin",
     preco: "120"
   },
   {
     imagem: foto5,
-    title: "Foto",
+    title: "Camiseta Nasa",
     preco: "30"
   },
   {
     imagem: foto6,
-    title: "Foto",
-    preco: "11"
+    title: "Camiseta Nasa",
+    preco: "20"
   },
   {
     imagem: foto7,
-    title: "Foto",
+    title: "Camiseta Mars",
     preco: "10"
   },
   {
     imagem: foto8,
-    title: "Foto",
-    preco: "100"
+    title: "Camiseta Lua",
+    preco: "130"
   },
   {
     imagem: foto9,
-    title: "Foto",
+    title: "Camiseta Carl Sagan",
     preco: "1"
   },
 ]
@@ -73,20 +73,20 @@ const produtos = [
 class App extends React.Component {
 
   state={
-    valorMinimo:"",
-    valorMaximo:"",
+    valorMinimo:"0",
+    valorMaximo:"999",
     buscaNome:""
   }
   
-  mudarMinimo = (event) =>{
+  onChangeMudarMinimo = (event) =>{
     this.setState({valorMinimo: event.target.value})
   }
 
-  mudarMaximo = (event) => {
+  onChangeMudarMaximo = (event) => {
     this.setState({valorMaximo: event.target.value})
   }
 
-  mudarBusca = (event) =>{
+  onChangeMudarBusca = (event) =>{
     this.setState({buscaNome: event.target.value})
   }
 
@@ -103,6 +103,9 @@ class App extends React.Component {
               valorMinimo = {this.state.valorMinimo}
               valorMaximo = {this.state.valorMaximo}
               buscaNome = {this.state.buscaNome}
+              onChangeMudarMinimo={this.onChangeMudarMinimo}
+              onChangeMudarMaximo={this.onChangeMudarMaximo}
+              onChangeMudarBusca={this.onChangeMudarBusca}
             />
           </div>
 
