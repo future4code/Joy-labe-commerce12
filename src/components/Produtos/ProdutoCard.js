@@ -14,13 +14,17 @@ const BotaoAddCarrinho = styled.button`
   /* background-color: whitesmoke; */
   margin-left: 20px;
 `
+const ImagemCard = styled.img`
+    width: 200px;
+    height: 200px;
+`
 
 export class ProdutoCard extends React.Component{
     render(){
         const produto = this.props.produto
         return(
             <ContainerCard>
-                <img src={produto.imagem}/>
+                <ImagemCard src={produto.imagem}/>
                 <di>
                     <h4>{produto.title}</h4>
                     <p>R$ {produto.preco},00</p>
