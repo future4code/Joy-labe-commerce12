@@ -19,13 +19,19 @@ const DivCards = styled.div`
 `
 
 class Produtos extends React.Component {
-
+  getFiltroEOrdandoLista = () =>{
+    return this.props.produtos
+    .filter((produto) => produto.preco < this.props.valorMaximo)
+    .filter((produto) => produto.preco > this.props.valorMinimo)
+    .filter((produto) => produto.title.includes(this.props.buscaNome))
+    // .sort((a,b) =>)
+  }
   render(){
-
+    const filtroEOrdandoLista = this.getFiltroEOrdandoLista()
     return (
       <di>
         <ProdutoHeader>
-          <p>Quantidade de produtos: 5</p>
+          <p>Quantidade de produtos: 9 </p>
           <label>
             Ordenação:
             <select>
@@ -35,6 +41,9 @@ class Produtos extends React.Component {
           </label>
         </ProdutoHeader>
         <DivCards>
+          {/* {filtroEOrdandoLista.map((produto) => {
+            return <ProdutoCard produto={produto}/>
+          })} */}
           {this.props.produtos.map((produto) => {
             return <ProdutoCard produto={produto}/>
           })}

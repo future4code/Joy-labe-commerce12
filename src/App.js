@@ -3,21 +3,20 @@ import styled from 'styled-components';
 import Produtos from './components/Produtos/Produtos';
 import { Filtros } from './components/Filtros/Filtros';
 import { Carrinho } from './components/Carrinho/Carrinho';
-
+import foto1 from'./img/foto1.jpg';
+import foto2 from'./img/foto2.jpg';
+import foto3 from'./img/foto3.jpg';
+import foto4 from'./img/foto4.jpg';
+import foto5 from'./img/foto5.jpg';
+import foto6 from'./img/foto6.jpg';
+import foto7 from'./img/foto7.jpg';
+import foto8 from'./img/foto8.jpg';
+import foto9 from'./img/foto9.jpg';
 
 const ContainerPrincipal = styled.div`
   display: flex;
   /* justify-content: space-between; */
   /* flex-grow: 0 1 0; */
-`
-const DivCards = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr ;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  row-gap: 1rem;
-  column-gap: 2rem;
-  margin-left: 2rem;
-  /* background-color: whitesmoke; */
 `
 
 const DivCarrinho = styled.div`
@@ -25,77 +24,107 @@ const DivCarrinho = styled.div`
 `
 const produtos = [
   {
-    imagem: "https://picsum.photos/180/200?a=1",
+    imagem: foto1,
+    title: "Foto",
+    preco: "10"
+  },
+  {
+    imagem: foto2,
+    title: "Foto",
+    preco: "150"
+  },
+  {
+    imagem: foto3,
+    title: "Foto",
+    preco: "200"
+  },
+  {
+    imagem: foto4,
+    title: "Foto",
+    preco: "120"
+  },
+  {
+    imagem: foto5,
+    title: "Foto",
+    preco: "30"
+  },
+  {
+    imagem: foto6,
+    title: "Foto",
+    preco: "11"
+  },
+  {
+    imagem: foto7,
+    title: "Foto",
+    preco: "10"
+  },
+  {
+    imagem: foto8,
     title: "Foto",
     preco: "100"
   },
   {
-    imagem: "https://picsum.photos/180/200?a=2",
+    imagem: foto9,
     title: "Foto",
-    preco: "100"
-  },
-  {
-    imagem: "https://picsum.photos/180/200?a=3",
-    title: "Foto",
-    preco: "100"
-  },
-  {
-    imagem: "https://picsum.photos/180/200?a=4",
-    title: "Foto",
-    preco: "100"
-  },
-  {
-    imagem: "https://picsum.photos/180/200?a=5",
-    title: "Foto",
-    preco: "100"
-  },
-  {
-    imagem: "https://picsum.photos/180/200?a=6",
-    title: "Foto",
-    preco: "100"
-  },
-  {
-    imagem: "https://picsum.photos/180/200?a=7",
-    title: "Foto",
-    preco: "100"
-  },
-  {
-    imagem: "https://picsum.photos/180/200?a=8",
-    title: "Foto",
-    preco: "100"
-  },
-  {
-    imagem: "https://picsum.photos/180/200?a=9",
-    title: "Foto",
-    preco: "100"
+    preco: "1"
   },
 ]
 
-function App() {
-  return (
-    <div>
-      <div>
-        <h1>Header</h1>
-      </div>
+class App extends React.Component {
 
-      <ContainerPrincipal>
+  state={
+    valorMinimo:"",
+    valorMaximo:"",
+    buscaNome:""
+  }
+  
+  mudarMinimo = (event) =>{
+    this.setState({valorMinimo: event.target.value})
+  }
+
+  mudarMaximo = (event) => {
+    this.setState({valorMaximo: event.target.value})
+  }
+
+  mudarBusca = (event) =>{
+    this.setState({buscaNome: event.target.value})
+  }
+
+  render(){
+    return (
+      <div>
         <div>
-          <Filtros/>
+          <h1>Header</h1>
         </div>
 
-        <DivCards>
-          <Produtos produtos = {produtos}/>
-        </DivCards>
+        <ContainerPrincipal>
+          <div>
+            <Filtros
+              valorMinimo = {this.state.valorMinimo}
+              valorMaximo = {this.state.valorMaximo}
+              buscaNome = {this.state.buscaNome}
+            />
+          </div>
 
-        <DivCarrinho>
-          <h3>Carrinho:</h3>
-          <Carrinho/>
-        </DivCarrinho>
+          <div>
+            <Produtos 
+            produtos = {produtos}
+            valorMinimo = {this.state.valorMinimo}
+            valorMaximo = {this.state.valorMaximo}
+            buscaNome = {this.state.buscaNome}
+            />
+          </div>
 
-      </ContainerPrincipal>
-      <div>Footer</div>
-    </div>  
-  );
+          <DivCarrinho>
+            <Carrinho/>
+          </DivCarrinho>
+
+        </ContainerPrincipal>
+        <div>Footer</div>
+      </div>  
+    );
+  }
+    
 }
 
 export default App;
