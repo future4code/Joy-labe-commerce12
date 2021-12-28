@@ -11,9 +11,11 @@ export class CarrinhoItens extends React.Component{
     render(){
         return(
             <ContainerItem>
-                <p>1x</p>
-                <p>Produto</p>
-                <button>Remover</button>
+                <p>{this.props.cartItem.quantidade}x</p>
+                <p>{this.props.cartItem.title}</p>
+                <button onClick={() => this.props.removerProduto(this.props.cartItem.id)}>
+                    Remover
+                </button>
             </ContainerItem>
         )
     }

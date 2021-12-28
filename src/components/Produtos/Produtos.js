@@ -37,7 +37,6 @@ class Produtos extends React.Component {
     this.setState({sort: event.target.value})
   }
 
-
   render(){
     const filtroEOrdandoLista = this.getFiltroEOrdandoLista()
     return (
@@ -46,7 +45,7 @@ class Produtos extends React.Component {
           <p>Quantidade de produtos: {filtroEOrdandoLista.length} </p>
           <label>
             Ordenação:
-            <select value={this.state.sort}> onChange={this.onChangeSort}
+            <select value={this.state.sort} onChange={this.onChangeSort}>
               <option value={"CRESCENTE"}>Crescente</option>
               <option value={"DECRESCENTE"}>Decrescente</option>
             </select>
@@ -54,12 +53,11 @@ class Produtos extends React.Component {
         </ProdutoHeader>
         <DivCards>
           {filtroEOrdandoLista.map((produto) => {
-            return <ProdutoCard produto={produto}/>
+            return <ProdutoCard 
+              produto={produto} 
+              addProdutoCarrinho = {this.props.addProdutoCarrinho}
+            />
           })}
-          {/* {this.props.produtos.map((produto) => {
-            return <ProdutoCard produto={produto}/>
-          })} pode excluir*/}
-          {/* <ProdutoCard/> */}
         </DivCards>        
       </di>
       
