@@ -26,7 +26,7 @@ const produtos = [
   {
     imagem: foto1,
     title: "Camiseta Life on Mars",
-    preco: "10"
+    preco: "70"
   },
   {
     imagem: foto2,
@@ -46,17 +46,17 @@ const produtos = [
   {
     imagem: foto5,
     title: "Camiseta Nasa",
-    preco: "30"
+    preco: "90"
   },
   {
     imagem: foto6,
     title: "Camiseta Nasa",
-    preco: "20"
+    preco: "80"
   },
   {
     imagem: foto7,
     title: "Camiseta Mars",
-    preco: "10"
+    preco: "70"
   },
   {
     imagem: foto8,
@@ -66,16 +66,32 @@ const produtos = [
   {
     imagem: foto9,
     title: "Camiseta Carl Sagan",
-    preco: "1"
+    preco: "50"
   },
 ]
 
 class App extends React.Component {
 
   state={
-    valorMinimo:"0",
-    valorMaximo:"999",
-    buscaNome:""
+    valorMinimo:10,
+    valorMaximo: 999,
+    buscaNome:"",
+    produtosCarrinho: [
+      {
+        id: 4,
+        imagem: foto8,
+        title: "Camiseta Lua",
+        preco: 130,
+        quantidade: 2
+      },
+      {
+        id: 8,
+        imagem: foto9,
+        title: "Camiseta Carl Sagan",
+        preco: 50,
+        quantidade: 3
+      },
+    ]
   }
   
   onChangeMudarMinimo = (event) =>{
@@ -88,6 +104,44 @@ class App extends React.Component {
 
   onChangeMudarBusca = (event) =>{
     this.setState({buscaNome: event.target.value})
+  }
+
+  addProdutoCarrinho = (produtoId) => {
+    const produtoCarrinho = this.state.produtosCarrinho.find(produto => produtoId === produto.id)
+    
+    if(produtoCarrinho) {
+      const newprodutoCarrinho = this.state.produtosCarrinho.map(produto =>{
+        if(produtoId === produto.id) {
+          return{
+            ...produto,
+            quantidade: produto.quantidade + 1
+          }
+        }
+        return produto
+      })
+
+      this.setState({produtosCarrinho: newprodutoCarrinho})
+    }else{
+      const produtoAdd = produtos.find(produto => produtoId === produto.id)
+
+      const newprodutoCarrinho = [...this.state.produtosCarrinho,{...produtoAdd, quantidade: 1}]
+
+      this.setState({produtosCarrinho: newprodutoCarrinho})
+    }
+  }
+
+  removerProduto = (produtoId) =>{
+    const newprodutoCarrinho = this.state.produtosCarrinho.map((produto) => {
+      if (produto.id === produtoId) {
+        return{
+          ...produto,
+          quantidade: produto.quantidade - 1
+        }
+      }
+      return produto
+    }).filter((produto) => produto.quantidade >0)
+
+    this.setState({produtosCarrinho: newprodutoCarrinho})
   }
 
   render(){
@@ -115,15 +169,19 @@ class App extends React.Component {
             valorMinimo = {this.state.valorMinimo}
             valorMaximo = {this.state.valorMaximo}
             buscaNome = {this.state.buscaNome}
+            addProdutoCarrinho = {this.addProdutoCarrinho}            
             />
           </div>
 
           <DivCarrinho>
-            <Carrinho/>
+            <Carrinho
+              produtosCarrinho = {this.state.produtosCarrinho}
+              removerProduto = {this.removerProduto}
+            />
           </DivCarrinho>
 
         </ContainerPrincipal>
-        <div>Footer</div>
+        {/* <div>Footer</div> */}
       </div>  
     );
   }
